@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,992 +23,965 @@
     <meta name="twitter:image" content="https://i.imgur.com/PBnK2Pb.png">
 
     <!-- Cloudflare Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "344a8b77bed240ac840970d1dd699b5e"}'></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f04a2200ffb246399e814a8147fa94a8"}'></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(30, 30, 30, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 30, 30, 0.5) 1px, transparent 1px);
-            background-size: 20px 20px;
-            z-index: -1;
-        }
-
-        img {
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-drag: none;
-            -o-user-drag: none;
-            pointer-events: none;
-        }
-
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
-            margin-top: 40px;
-            animation: fadeIn 1s ease-out;
-            padding: 0 20px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .typing-title {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            min-height: 60px;
-            position: relative;
-            display: inline-block;
-            line-height: 1.2;
-            vertical-align: middle;
-            color: #4169e1;
-        }
-
-        .typing-cursor {
-            display: inline-block;
-            width: 3px;
-            height: 50px;
-            background-color: #4169e1;
-            animation: blink 1s infinite;
-            position: relative;
-            top: 18px;
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            margin: 0 auto 40px auto;
-            text-align: center;
-            color: #cccccc;
-            max-width: 700px;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .double-category-boxes {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .category-box {
-            background: rgba(30, 30, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            flex: 1 1 360px;
-            max-width: 420px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .category-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .category-title {
-            font-size: 1.5rem;
-            color: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .buttons-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-            padding-bottom: 10px;
-        }
-
-        .button {
-            padding: 12px 24px;
-            background: #1a1a1a;
-            color: #ffffff;
-            border: 1px solid #303030;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            height: 60px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .button:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .button:hover:before {
-            left: 100%;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, #404040, #252525);
-        }
-
-        .button:active {
-            transform: translateY(1px);
-        }
-
-        .special-buttons-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-            padding-bottom: 60px;
-        }
-
-        .special-button {
-            padding: 12px 24px;
-            color: #ffffff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            min-width: 300px;
-            max-width: 300px;
-            height: 60px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .special-button.website {
-            background: linear-gradient(135deg, #4a69bd, #1e3799);
-        }
-
-        .special-button.donation {
-            background: linear-gradient(135deg, #6ab04c, #4cd137);
-        }
-
-        .special-button.discord {
-            background: linear-gradient(135deg, #7289da, #5865f2);
-        }
-
-        .special-button:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .special-button:hover:before {
-            left: 100%;
-        }
-
-        .special-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .special-button:active {
-            transform: translateY(1px);
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: -350px;
-            width: 320px;
-            background: linear-gradient(135deg, #252525, #101010);
-            border-left: 4px solid #4caf50;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            z-index: 1000;
-            opacity: 0;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-        }
-
-        .notification.show {
-            right: 20px;
-            opacity: 1;
-            animation: wiggle 0.8s ease-in-out;
-        }
-
-        .notification.hide {
-            opacity: 0;
-            transform: translateX(100px) scale(0.8);
-        }
-
-        @keyframes wiggle {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            15% {
-                transform: translateX(-5px) rotate(-2deg);
-            }
-            30% {
-                transform: translateX(5px) rotate(2deg);
-            }
-            45% {
-                transform: translateX(-3px) rotate(-1deg);
-            }
-            60% {
-                transform: translateX(3px) rotate(1deg);
-            }
-            75% {
-                transform: translateX(-1px) rotate(-0.5deg);
-            }
-            90% {
-                transform: translateX(1px) rotate(0.5deg);
-            }
-        }
-
-        .notification-icon {
-            font-size: 1.8rem;
-            color: #4caf50;
-            margin-right: 15px;
-            animation: pulse 2s infinite;
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .notification-content {
-            flex: 1;
-        }
-
-        .notification-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #4caf50;
-            font-size: 1.2rem;
-            text-align: left;
-        }
-
-        .notification-message {
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            line-height: 1.6;
-            color: #cccccc;
-            text-align: left;
-        }
-
-        .notification-button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-        }
-
-        .notification-button {
-            background: #4caf50;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .notification-button:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .dismiss-button {
-            background: transparent;
-            color: #cccccc;
-            border: 1px solid #333;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-
-        .dismiss-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .copy-notification {
-            background: linear-gradient(135deg, #252525, #101010);
-            border-left: 4px solid #03a9f4;
-        }
-
-        .copy-notification .notification-icon {
-            color: #03a9f4;
-        }
-
-        .copy-notification .notification-title {
-            color: #03a9f4;
-        }
-
-        .footer {
-            width: 100%;
-            margin-top: auto;
-            background: linear-gradient(to bottom, transparent, #080808);
-            padding: 40px 20px 20px;
-        }
-
-        .credits-section {
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .about-section {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            padding: 20px;
-            background: rgba(30, 30, 30, 0.8);
-            border-radius: 10px;
-            border: 1px solid #303030;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #e0e0e0;
-        }
-
-        .about-content {
-            text-align: left;
-            color: #cccccc;
-            line-height: 1.6;
-        }
-
-        .credits-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: #e0e0e0;
-        }
-
-        .credit-category-title {
-            font-size: 1.4rem;
-            margin: 20px 0;
-            color: #e0e0e0;
-            text-align: center;
-        }
-
-        .credits-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .credits-row {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .credits-column {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-        }
-
-        .managers-title {
-            margin-top: 40px;
-        }
-
-        .credit-card {
-            width: 150px;
-            background: #1e1e1e;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .credit-card:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .credit-img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            background: #333;
-            transition: all 0.3s ease;
-        }
-
-        .credit-card:hover .credit-img {
-            filter: brightness(1.1);
-        }
-
-        .credit-name {
-            padding: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .modal.show {
-            opacity: 1;
-        }
-
-        .modal-content {
-            position: relative;
-            background: linear-gradient(135deg, #1e1e1e, #121212);
-            margin: 10% auto;
-            padding: 25px;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transform: translateY(-50px);
-            opacity: 0;
-            transition: all 0.4s ease-out;
-        }
-
-        .modal.show .modal-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .close-modal {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .close-modal:hover,
-        .close-modal:focus {
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
-        }
-
-        .modal-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-right: 20px;
-            border: 3px solid #333;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            color: #fff;
-            margin: 0;
-        }
-
-        .modal-story {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #ccc;
-            text-align: left;
-        }
-
-        .donations-container {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 300px;
-            background: linear-gradient(135deg, #1e1e1e, #121212);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            z-index: 100;
-            overflow: hidden;
-            border: 1px solid #333;
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: slideInDonations 0.5s forwards 0.5s;
-        }
-
-        @keyframes slideInDonations {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .donations-header {
-            background: #189c44;
-            color: #fff;
-            padding: 12px 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .donations-tabs {
-            display: flex;
-            gap: 5px;
-        }
-
-        .donations-tab {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #ccc;
-        }
-
-        .donations-tab.active {
-            background: rgba(255, 255, 255, 0.2);
-            font-weight: bold;
-            color: white;
-        }
-
-        .donations-tab:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .donations-list {
-            max-height: 320px;
-            overflow-y: auto;
-            padding: 0;
-        }
-
-        .donations-list::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .donations-list::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-
-        .donations-list::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 3px;
-        }
-
-        .donations-list::-webkit-scrollbar-thumb:hover {
-            background: #444;
-        }
-
-        .donation-item {
-            padding: 15px;
-            border-bottom: 1px solid #333;
-            transition: all 0.3s ease;
-            animation: fadeIn 0.5s;
-        }
-
-        .donation-item:last-child {
-            border-bottom: none;
-        }
-
-        .donation-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .donation-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .donation-name {
-            font-weight: bold;
-            color: #189c44;
-            font-size: 1rem;
-        }
-
-        .donation-amount {
-            background: rgba(24, 156, 68, 0.2);
-            color: #189c44;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .donation-message {
-            color: #ccc;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            word-break: break-word;
-            text-align: left;
-            max-height: none;
-            overflow-y: visible;
-        }
-
-        .donation-date {
-            color: #888;
-            font-size: 0.8rem;
-            margin-top: 8px;
-            text-align: right;
-        }
-
-        .donation-loading {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: #ccc;
-        }
-
-        .donations-empty {
-            padding: 20px;
-            text-align: center;
-            color: #aaa;
-            font-style: italic;
-        }
-
-        .doador-mes-tag {
-            margin-top: 8px;
-            font-size: 0.85rem;
-            background: #f1c40f;
-            color: #000;
-            padding: 3px 10px;
-            border-radius: 12px;
-            display: inline-block;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-
-        .donation-rank {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 5px;
-        }
-
-        .rank-number {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: #6ab04c;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        .rank-1 .rank-number {
-            background: #f1c40f;
-            color: #000;
-        }
-
-        .rank-2 .rank-number {
-            background: #95a5a6;
-        }
-
-        .rank-3 .rank-number {
-            background: #cd7f32;
-        }
-
-        .script-tip {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #999;
-            font-style: flat;
-            text-align: center;
-        }
-
-        .khan-button {
-            grid-column: span 2;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .lucide-icon {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
-
-        .icon-text-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .category-title .icon-text-container {
-            justify-content: center;
-        }
-
-        .button .icon-text-container,
-        .special-button .icon-text-container {
-            justify-content: center;
-        }
-
-        .notification-title .icon-text-container {
-            justify-content: flex-start;
-        }
-
-        @media (max-width: 768px) {
-            .typing-title {
-                font-size: 2.2rem;
-                min-height: 45px;
-            }
-
-            .typing-cursor {
-                height: 32px;
-            }
-
-            .description {
-                font-size: 1rem;
-                padding: 0 10px;
-            }
-
-            .button,
-            .special-button {
-                padding: 10px 20px;
-                min-width: 120px;
-                font-size: 0.9rem;
-            }
-
-            .notification {
-                width: 250px;
-            }
-
-            .credit-card {
-                width: 120px;
-            }
-
-            .credit-img {
-                height: 120px;
-            }
-
-            .about-content {
-                font-size: 0.9rem;
-            }
-
-            .credits-row {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .credits-column {
-                min-width: 100%;
-            }
-
-            .modal-content {
-                width: 90%;
-                margin: 20% auto;
-            }
-
-            .modal-avatar {
-                width: 60px;
-                height: 60px;
-            }
-
-            .modal-title {
-                font-size: 1.5rem;
-            }
-
-            .modal-story {
-                font-size: 1rem;
-            }
-
-            .donations-container {
-                position: relative;
-                top: 0;
-                left: 0;
-                width: calc(100% - 40px);
-                margin: 20px auto;
-                animation: fadeIn 0.5s forwards;
-                transform: none;
-                opacity: 1;
-            }
-
-            .buttons-container {
-                grid-template-columns: 1fr;
-            }
-
-            .khan-button {
-                grid-column: span 1;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .typing-title {
-                font-size: 1.8rem;
-                min-height: 38px;
-            }
-
-            .typing-cursor {
-                height: 28px;
-                top: 3px;
-            }
-
-            .button,
-            .special-button {
-                min-width: 140px;
-            }
-
-            .credits-container {
-                gap: 15px;
-            }
-
-            .credit-card {
-                width: 100px;
-            }
-
-            .credit-img {
-                height: 100px;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 15px;
-            }
-
-            .modal-avatar {
-                width: 50px;
-                height: 50px;
-            }
-
-            .modal-header {
-                margin-bottom: 15px;
-                padding-bottom: 10px;
-            }
-
-            .modal-title {
-                font-size: 1.3rem;
-            }
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-color: #121212;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(30, 30, 30, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 30, 30, 0.5) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -1;
+}
+
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 40px auto 0;
+    animation: fadeIn 1s ease-out;
+    padding: 0 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.typing-title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    min-height: 60px;
+    position: relative;
+    display: inline-block;
+    line-height: 1.2;
+    vertical-align: middle;
+    color: #4169e1;
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 50px;
+    background-color: #4169e1;
+    animation: blink 1s infinite;
+    position: relative;
+    top: 18px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0 auto 40px;
+    text-align: center;
+    color: #ccc;
+    max-width: 700px;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.double-category-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.category-box {
+    background: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex: 1 1 360px;
+    max-width: 420px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+}
+
+.category-title {
+    font-size: 1.5rem;
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.buttons-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+.button {
+    padding: 12px 24px;
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #303030;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 60px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.button:hover:before {
+    left: 100%;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #404040, #252525);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.special-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    padding-bottom: 60px;
+}
+
+.special-button {
+    padding: 12px 24px;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    min-width: 300px;
+    max-width: 300px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.special-button.website {
+    background: linear-gradient(135deg, #4a69bd, #1e3799);
+}
+
+.special-button.donation {
+    background: linear-gradient(135deg, #6ab04c, #4cd137);
+}
+
+.special-button.discord {
+    background: linear-gradient(135deg, #7289da, #5865f2);
+}
+
+.special-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.special-button:hover:before {
+    left: 100%;
+}
+
+.special-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.special-button:active {
+    transform: translateY(1px);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: -350px;
+    width: 320px;
+    background: linear-gradient(135deg, #252525, #101010);
+    border-left: 4px solid #4caf50;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 1000;
+    opacity: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.notification.show {
+    right: 20px;
+    opacity: 1;
+    animation: wiggle 0.8s ease-in-out;
+}
+
+.notification.hide {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8);
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: translateX(0); }
+    15% { transform: translateX(-5px) rotate(-2deg); }
+    30% { transform: translateX(5px) rotate(2deg); }
+    45% { transform: translateX(-3px) rotate(-1deg); }
+    60% { transform: translateX(3px) rotate(1deg); }
+    75% { transform: translateX(-1px) rotate(-0.5deg); }
+    90% { transform: translateX(1px) rotate(0.5deg); }
+}
+
+.notification-icon {
+    font-size: 1.8rem;
+    color: #4caf50;
+    margin-right: 15px;
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #4caf50;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.notification-message {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #ccc;
+    text-align: left;
+}
+
+.notification-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.notification-button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-button:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dismiss-button {
+    background: transparent;
+    color: #ccc;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.dismiss-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.copy-notification {
+    background: linear-gradient(135deg, #252525, #101010);
+    border-left: 4px solid #03a9f4;
+}
+
+.copy-notification .notification-icon {
+    color: #03a9f4;
+}
+
+.copy-notification .notification-title {
+    color: #03a9f4;
+}
+
+.footer {
+    width: 100%;
+    margin-top: auto;
+    background: linear-gradient(to bottom, transparent, #080808);
+    padding: 40px 20px 20px;
+}
+
+.credits-section {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.about-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 20px;
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 10px;
+    border: 1px solid #303030;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+}
+
+.about-content {
+    text-align: left;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.credits-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+}
+
+.credit-category-title {
+    font-size: 1.4rem;
+    margin: 20px 0;
+    color: #e0e0e0;
+    text-align: center;
+}
+
+.credits-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.credits-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.credits-column {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.managers-title {
+    margin-top: 40px;
+}
+
+.credit-card {
+    width: 150px;
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.credit-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.credit-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background: #333;
+    transition: all 0.3s ease;
+}
+
+.credit-card:hover .credit-img {
+    filter: brightness(1.1);
+}
+
+.credit-name {
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    background: linear-gradient(135deg, #1e1e1e, #121212);
+    margin: 10% auto;
+    padding: 25px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: all 0.4s ease-out;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
+.modal-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 3px solid #333;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0;
+}
+
+.modal-story {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ccc;
+    text-align: left;
+}
+
+.donations-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 300px;
+    background: linear-gradient(135deg, #1e1e1e, #121212);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    overflow: hidden;
+    border: 1px solid #333;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInDonations 0.5s forwards 0.5s;
+}
+
+@keyframes slideInDonations {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.donations-header {
+    background: #189c44;
+    color: #fff;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.donations-tabs {
+    display: flex;
+    gap: 5px;
+}
+
+.donations-tab {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #ccc;
+}
+
+.donations-tab.active {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    color: white;
+}
+
+.donations-tab:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.donations-list {
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.donations-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.donations-list::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.donations-list::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+
+.donations-list::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+.donation-item {
+    padding: 15px;
+    border-bottom: 1px solid #333;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s;
+}
+
+.donation-item:last-child {
+    border-bottom: none;
+}
+
+.donation-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.donation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.donation-name {
+    font-weight: bold;
+    color: #189c44;
+    font-size: 1rem;
+}
+
+.donation-amount {
+    background: rgba(24, 156, 68, 0.2);
+    color: #189c44;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.donation-message {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-break: break-word;
+    text-align: left;
+    max-height: none;
+    overflow-y: visible;
+}
+
+.donation-date {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 8px;
+    text-align: right;
+}
+
+.donation-loading {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #ccc;
+}
+
+.donations-empty {
+    padding: 20px;
+    text-align: center;
+    color: #aaa;
+    font-style: italic;
+}
+
+.doador-mes-tag {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    background: #f1c40f;
+    color: #000;
+    padding: 3px 10px;
+    border-radius: 12px;
+    display: inline-block;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+.donation-rank {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.rank-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #6ab04c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.rank-1 .rank-number {
+    background: #f1c40f;
+    color: #000;
+}
+
+.rank-2 .rank-number {
+    background: #95a5a6;
+}
+
+.rank-3 .rank-number {
+    background: #cd7f32;
+}
+
+.script-tip {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #999;
+    font-style: flat;
+    text-align: center;
+}
+
+.khan-button {
+    grid-column: span 2;
+    width: 100%;
+    justify-content: center;
+}
+
+.lucide-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.icon-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.category-title .icon-text-container,
+.button .icon-text-container,
+.special-button .icon-text-container {
+    justify-content: center;
+}
+
+.notification-title .icon-text-container {
+    justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+    .typing-title {
+        font-size: 2.2rem;
+        min-height: 45px;
+    }
+
+    .typing-cursor {
+        height: 32px;
+    }
+
+    .description {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .button,
+    .special-button {
+        padding: 10px 20px;
+        min-width: 120px;
+        font-size: 0.9rem;
+    }
+
+    .notification {
+        width: 250px;
+    }
+
+    .credit-card {
+        width: 120px;
+    }
+
+    .credit-img {
+        height: 120px;
+    }
+
+    .about-content {
+        font-size: 0.9rem;
+    }
+
+    .credits-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .credits-column {
+        min-width: 100%;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
+    }
+
+    .modal-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-story {
+        font-size: 1rem;
+    }
+
+    .donations-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: calc(100% - 40px);
+        margin: 20px auto;
+        animation: fadeIn 0.5s forwards;
+        transform: none;
+        opacity: 1;
+    }
+
+    .buttons-container {
+        grid-template-columns: 1fr;
+    }
+
+    .khan-button {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .typing-title {
+        font-size: 1.8rem;
+        min-height: 38px;
+    }
+
+    .typing-cursor {
+        height: 28px;
+        top: 3px;
+    }
+
+    .button,
+    .special-button {
+        min-width: 140px;
+    }
+
+    .credits-container {
+        gap: 15px;
+    }
+
+    .credit-card {
+        width: 100px;
+    }
+
+    .credit-img {
+        height: 100px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .modal-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .modal-header {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+    .modal-title {
+        font-size: 1.3rem;
+    }
+}
     </style>
 </head>
 
@@ -1062,22 +1034,19 @@
                             <span>RedaçãoSP</span>
                         </div>
                     </a>
-                    <a href="https://crimsonstrauss.xyz/expansao" class="button" data-aos="fade-up"
-                        data-aos-delay="300">
+                    <a href="https://crimsonstrauss.xyz/expansao" class="button" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-text-container">
                             <i data-lucide="moon" class="lucide-icon" data-color="#FFFFFF"></i>
                             <span>Expansão</span>
                         </div>
                     </a>
-                    <a href="https://matific.cupiditys.lol/dashboard" class="button" data-aos="fade-up"
-                        data-aos-delay="400">
+                    <a href="https://matific.cupiditys.lol/dashboard" class="button" data-aos="fade-up" data-aos-delay="400">
                         <div class="icon-text-container">
                             <i data-lucide="calculator" class="lucide-icon" data-color="#FFFFFF"></i>
                             <span>Matific</span>
                         </div>
                     </a>
-                    <a href="https://speakify.cupiditys.lol/install" class="button" data-aos="fade-up"
-                        data-aos-delay="500">
+                    <a href="https://speakify.cupiditys.lol/install" class="button" data-aos="fade-up" data-aos-delay="500">
                         <div class="icon-text-container">
                             <i data-lucide="audio-lines" class="lucide-icon" data-color="#FFFFFF"></i>
                             <span>SPeak</span>
@@ -1095,21 +1064,18 @@
                             <span>Alura</span>
                         </div>
                     </a>
-                    <a href="https://crimsonstrauss.xyz/livrodoestudante" class="button" data-aos="fade-up"
-                        data-aos-delay="800">
+                    <a href="https://crimsonstrauss.xyz/preparasp" class="button" data-aos="fade-up" data-aos-delay="800">
+                        <div class="icon-text-container">
+                            <i data-lucide="feather" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>PreparaSP</span>
+                        </div>
+                    </a>
+                    <a href="https://crimsonstrauss.xyz/livrodoestudante" class="button" data-aos="fade-up" data-aos-delay="900" style="grid-column: span 2;">
                         <div class="icon-text-container">
                             <i data-lucide="library-big" class="lucide-icon" data-color="#FFFFFF"></i>
                             <span>Apostilas</span>
                         </div>
                     </a>
-                    <!--
-                    <a href="https://example.com/" class="button" data-aos="fade-up" data-aos-delay="900" style="grid-column: span 2;">
-                        <div class="icon-text-container">
-                            <i data-lucide="laptop" class="lucide-icon" data-color="#FFFFFF"></i>
-                            <span>Alura</span>
-                        </div>
-                    </a>
-                    -->
                 </div>
             </div>
 
@@ -1194,16 +1160,16 @@
         <div class="notification-content">
             <div class="notification-title" style="color: #9b59b6;">
                 <div class="icon-text-container">
-                    <i data-lucide="rocket" class="lucide-icon" data-color="#9b59b6"></i>
-                    <span>DarkStore - Otimização</span>
+                    <i data-lucide="zap" class="lucide-icon" data-color="#9b59b6"></i>
+                    <span>DarkStore - Serviços</span>
                 </div>
             </div>
-            <div class="notification-message">Melhore o desempenho do seu computador com nossa otimização! Clique no botão abaixo para acessar o servidor do discord.</div>
+            <div class="notification-message">Tem preguiça de realizar suas tarefas? Entre na DarkStore que nós faremos para você! Serviços rápidos e confiáveis.</div>
             <div class="notification-button-container">
                 <button class="notification-button" style="background: #9b59b6;" onclick="joinOptimizationServer()">
                     <div class="icon-text-container">
                         <i data-lucide="square-plus" class="lucide-icon" data-color="#FFFFFF"></i>
-                        <span>Entrar no Servidor</span>
+                        <span>Acessar DarkStore</span>
                     </div>
                 </button>
                 <button class="dismiss-button" onclick="dismissOptimizationNotification()">Mais tarde</button>
@@ -1226,8 +1192,6 @@
                 <p><strong>Ass: <\DarkMode></strong></p>
             </div>
         </div>
-
-        <br><br><br><br><br>
 
         <div class="credits-section">
             <div class="credits-row">
@@ -1273,115 +1237,112 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        lucide.createIcons();
+<script>
+lucide.createIcons();
 
-        function applyIconColors() {
-            document.querySelectorAll('.lucide-icon[data-color]').forEach(icon => {
-                const color = icon.getAttribute('data-color');
-                icon.style.color = color;
-            });
-        }
+const applyIconColors = () => {
+    document.querySelectorAll('.lucide-icon[data-color]').forEach(icon => {
+        icon.style.color = icon.getAttribute('data-color');
+    });
+};
 
-        const titleText = "Sala do Futuro Hacks";
-        const titleElement = document.getElementById("title");
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingDelay = 150;
-        let deletingDelay = 50;
-        let newTextDelay = 4000;
-        let currentTab = 'recent';
-        let donationsData = [];
-        const owners = [
-            { id: "852703201068187668", name: "Cupiditys" },
-            { id: "769197514363764736", name: "Flowings" }
-        ];
-        const coLeaders = [
-            { id: "757613243136213213", name: "ꜱ ɴ ᴀ ᴋ ᴇ" }
-        ];
-        const managers = [
-            { id: "1080175803024814142", name: "<\\DarkMode>" },
-            { id: "1059673695230103582", name: "CrimsonStrauss" },
-            { id: "1303163875386069017", name: "Xeonno" }
-        ];
-        const userStories = {
-            "852703201068187668": { story: "Cupiditys, um salvador para muitos por ter recriado o servidor Platform Destroyer. Além de ser dono também é desenvolvedor da maioria dos websites e scripts novos para a Sala do Futuro." },
-            "769197514363764736": { story: "Flowings, o segundo fundador do servidor e principal apoiador dos websites e scripts. De vez em quando aparece nos chats de voz para tentar conversar um pouco em português." },
-            "757613243136213213": { story: "Snake, o único co-fundador do servidor. Está desde o início no projeto e comanda toda a equipe de staffs. Às vezes fica sumido? SIM! Mas é um cara legal de conversar KKK." },
-            "1080175803024814142": { story: "DarkMode, o único desenvolvedor que não desenvolve nada se não tiver seu fiel parceiro, o ChatGPT! Desenvolvedor do website Sala do Futuro Hacks e também do bot de moderação do servidor do Discord." },
-            "1059673695230103582": { story: "CrimsonStrauss, o desenvolvedor alternativo dos websites e scripts. Um cara sinceramente muito foda e muito amigavel. Ele deu conta de criar a maioria dos scripts para a maioria das plataformas da Sala do Futuro." },
-            "1303163875386069017": { story: "Xeonno, não conheço, não quero conhecer e foda-se também... o único “desenvolvedor” do servidor que nunca desenvolveu nada! Gosta de ficar zoando quem usa ChatGPT, mas nunca faz nada no servidor – e ainda é broxa!" }
-        };
+const titleText = "Sala do Futuro Hacks";
+const titleElement = document.getElementById("title");
+let charIndex = 0;
+let isDeleting = false;
+const typingDelay = 150;
+const deletingDelay = 50;
+const newTextDelay = 4000;
+let currentTab = 'recent';
+let donationsData = [];
 
-        function typeTitle() {
-            const currentText = titleElement.textContent;
-            if (!isDeleting && charIndex < titleText.length) {
-                titleElement.textContent = titleText.substring(0, charIndex + 1);
-                charIndex++;
-                setTimeout(typeTitle, typingDelay);
-            } else if (isDeleting && charIndex > 0) {
-                titleElement.textContent = titleText.substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(typeTitle, deletingDelay);
-            } else if (charIndex === titleText.length) {
-                isDeleting = true;
-                setTimeout(typeTitle, newTextDelay);
-            } else if (charIndex === 0) {
-                isDeleting = false;
-                setTimeout(typeTitle, typingDelay);
-            }
-        }
+const owners = [
+    { id: "852703201068187668", name: "Cupiditys" },
+    { id: "769197514363764736", name: "Flowings" }
+];
 
-        function showNotification() {
-            const notification = document.getElementById("donation-notification");
-            notification.classList.add("show");
-            setTimeout(() => {
-                notification.classList.add("hide");
-                notification.classList.remove("show");
-                setTimeout(() => {
-                    notification.classList.remove("hide");
-                    notification.style.right = "-350px";
-                }, 500);
-            }, 15000);
-        }
+const coLeaders = [
+    { id: "757613243136213213", name: "ꜱ ɴ ᴀ ᴋ ᴇ" }
+];
 
-        function goToDonation() {
-            window.location.href = "https://pixgg.com/DarkMode";
-        }
+const managers = [
+    { id: "1080175803024814142", name: "<\\DarkMode>" },
+    { id: "1059673695230103582", name: "CrimsonStrauss" },
+    { id: "1303163875386069017", name: "Xeonno" }
+];
 
-        function dismissNotification() {
-            const notification = document.getElementById("donation-notification");
-            notification.classList.add("hide");
-            notification.classList.remove("show");
-            setTimeout(() => {
-                notification.classList.remove("hide");
-                notification.style.right = "-350px";
-            }, 500);
-        }
+const userStories = {
+    "852703201068187668": { story: "Cupiditys, um salvador para muitos por ter recriado o servidor Platform Destroyer. Além de ser dono também é desenvolvedor da maioria dos websites e scripts novos para a Sala do Futuro." },
+    "769197514363764736": { story: "Flowings, o segundo fundador do servidor e principal apoiador dos websites e scripts. De vez em quando aparece nos chats de voz para tentar conversar um pouco em português." },
+    "757613243136213213": { story: "Snake, o único co-fundador do servidor. Está desde o início no projeto e comanda toda a equipe de staffs. Às vezes fica sumido? SIM! Mas é um cara legal de conversar KKK." },
+    "1080175803024814142": { story: "DarkMode, o único desenvolvedor que não desenvolve nada se não tiver seu fiel parceiro, o ChatGPT! Desenvolvedor do website CMSP Hacks e também do bot de moderação do servidor do Discord." },
+    "1059673695230103582": { story: "CrimsonStrauss, o desenvolvedor alternativo dos websites e scripts. Um cara sinceramente muito foda e muito amigavel. Ele deu conta de criar a maioria dos scripts para a maioria das plataformas da Sala do Futuro." },
+    "1303163875386069017": { story: "Xeonno, não conheço, não quero conhecer e foda-se também... o único \"desenvolvedor\" do servidor que nunca desenvolveu nada! Gosta de ficar zoando quem usa ChatGPT, mas nunca faz nada no servidor – e ainda é broxa!" }
+};
 
-        function showOptimizationNotification() {
-            const notification = document.getElementById("optimization-notification");
-            notification.style.display = "block";
-            setTimeout(() => {
-                notification.classList.add("show");
-                setTimeout(() => {
-                    notification.classList.add("hide");
-                    notification.classList.remove("show");
-                    setTimeout(() => {
-                        notification.classList.remove("hide");
-                        notification.style.right = "-350px";
-                        notification.style.display = "none";
-                    }, 500);
-                }, 15000);
-            }, 100);
-        }
+const fetchWithFallback = async (url, fallbackUrl, options = {}) => {
+    const fetchJson = async (targetUrl) => {
+        const res = await fetch(targetUrl, options).catch(() => null);
+        return res?.ok ? res.json().catch(() => null) : null;
+    };
 
-        function joinOptimizationServer() {
-            window.location.href = "https://discord.gg/XRXg7PNeks";
-        }
+    return (await fetchJson(url)) || (await fetchJson(fallbackUrl)) || {};
+};
 
-        function dismissOptimizationNotification() {
-            const notification = document.getElementById("optimization-notification");
+const typeTitle = () => {
+    const currentText = titleElement.textContent;
+    
+    if (!isDeleting && charIndex < titleText.length) {
+        titleElement.textContent = titleText.substring(0, charIndex + 1);
+        charIndex++;
+        setTimeout(typeTitle, typingDelay);
+    } else if (isDeleting && charIndex > 0) {
+        titleElement.textContent = titleText.substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(typeTitle, deletingDelay);
+    } else if (charIndex === titleText.length) {
+        isDeleting = true;
+        setTimeout(typeTitle, newTextDelay);
+    } else if (charIndex === 0) {
+        isDeleting = false;
+        setTimeout(typeTitle, typingDelay);
+    }
+};
+
+const showNotification = () => {
+    const notification = document.getElementById("donation-notification");
+    notification.classList.add("show");
+    
+    setTimeout(() => {
+        notification.classList.add("hide");
+        notification.classList.remove("show");
+        setTimeout(() => {
+            notification.classList.remove("hide");
+            notification.style.right = "-350px";
+        }, 500);
+    }, 15000);
+};
+
+const goToDonation = () => window.location.href = "https://pixgg.com/DarkMode";
+
+const dismissNotification = () => {
+    const notification = document.getElementById("donation-notification");
+    notification.classList.add("hide");
+    notification.classList.remove("show");
+    
+    setTimeout(() => {
+        notification.classList.remove("hide");
+        notification.style.right = "-350px";
+    }, 500);
+};
+
+const showOptimizationNotification = () => {
+    const notification = document.getElementById("optimization-notification");
+    notification.style.display = "block";
+    
+    setTimeout(() => {
+        notification.classList.add("show");
+        setTimeout(() => {
             notification.classList.add("hide");
             notification.classList.remove("show");
             setTimeout(() => {
@@ -1389,354 +1350,323 @@
                 notification.style.right = "-350px";
                 notification.style.display = "none";
             }, 500);
+        }, 15000);
+    }, 100);
+};
+
+const joinOptimizationServer = () => window.location.href = "https://discord.gg/XRXg7PNeks";
+
+const dismissOptimizationNotification = () => {
+    const notification = document.getElementById("optimization-notification");
+    notification.classList.add("hide");
+    notification.classList.remove("show");
+    
+    setTimeout(() => {
+        notification.classList.remove("hide");
+        notification.style.right = "-350px";
+        notification.style.display = "none";
+    }, 500);
+};
+
+const copyScript = (platform) => {
+    const scripts = {
+        'Khan Academy': "javascript:fetch(\"https://raw.githubusercontent.com/Niximkk/Khanware/refs/heads/main/Khanware.js\").then(t=>t.text()).then(eval);",
+    };
+
+    const scriptToClone = scripts[platform];
+    const tempElement = document.createElement("textarea");
+    
+    tempElement.value = scriptToClone;
+    document.body.appendChild(tempElement);
+    tempElement.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempElement);
+
+    const donationNotification = document.getElementById("donation-notification");
+    
+    if (donationNotification.classList.contains("show")) {
+        dismissNotification();
+        setTimeout(() => showCopyNotification(platform), 300);
+    } else {
+        showCopyNotification(platform);
+    }
+};
+
+const showCopyNotification = (platform) => {
+    const notification = document.getElementById("copy-notification");
+    const message = notification.querySelector(".notification-message");
+    
+    message.textContent = `Script para ${platform} copiado com sucesso! Adicione nos favoritos do navegador para executar.`;
+    notification.style.right = "-350px";
+    notification.style.opacity = "0";
+    notification.classList.remove("hide");
+    
+    void notification.offsetWidth;
+
+    setTimeout(() => {
+        notification.style.right = "20px";
+        notification.style.opacity = "1";
+        notification.classList.add("show");
+        setTimeout(dismissCopyNotification, 4000);
+    }, 100);
+};
+
+const dismissCopyNotification = () => {
+    const notification = document.getElementById("copy-notification");
+    notification.classList.add("hide");
+    notification.classList.remove("show");
+    
+    setTimeout(() => {
+        notification.classList.remove("hide");
+        notification.style.right = "-350px";
+        notification.style.opacity = "0";
+    }, 500);
+};
+
+const openUserModal = (userId, userName, avatarUrl) => {
+    const modal = document.getElementById('user-modal');
+    const modalName = document.getElementById('modal-name');
+    const modalStory = document.getElementById('modal-story');
+    const modalAvatar = document.getElementById('modal-avatar');
+
+    modalName.textContent = userName;
+    modalAvatar.src = avatarUrl;
+    modalStory.textContent = userStories[userId]?.story;
+
+    modal.style.display = 'block';
+    setTimeout(() => modal.classList.add('show'), 10);
+};
+
+const closeUserModal = () => {
+    const modal = document.getElementById('user-modal');
+    modal.classList.remove('show');
+    setTimeout(() => modal.style.display = 'none', 300);
+};
+
+const cleanAvatarCache = (maxAgeInDays = 7) => {
+    const currentTime = Date.now();
+    const cacheKey = 'avatar_cache_timestamp';
+    const lastCleanTime = localStorage.getItem(cacheKey);
+
+    if (lastCleanTime && (currentTime - parseInt(lastCleanTime) < maxAgeInDays * 24 * 60 * 60 * 1000)) return;
+
+    Object.keys(localStorage)
+        .filter(key => key.startsWith('discord_avatar_'))
+        .forEach(key => localStorage.removeItem(key));
+
+    localStorage.setItem(cacheKey, currentTime.toString());
+};
+
+const fetchDiscordAvatar = async (userId) => {
+    const cachedAvatar = localStorage.getItem(`discord_avatar_${userId}`);
+    if (cachedAvatar) return cachedAvatar;
+
+    try {
+        const data = await fetchWithFallback(
+            `https://dnext-api.vercel.app/api/discord/user/${userId}`,
+            `https://dnext-apii.vercel.app/api/discord/user/${userId}`
+        );
+
+        if (data?.avatar?.link) {
+            const avatarUrl = `${data.avatar.link}.png?size=2048`;
+            localStorage.setItem(`discord_avatar_${userId}`, avatarUrl);
+            return avatarUrl;
         }
+        return null;
+    } catch (error) {
+        return null;
+    }
+};
 
-        function copyScript(platform) {
-            let scriptToClone = "";
-            switch (platform) {
-                case 'Khan Academy':
-                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/Niximkk/Khanware/refs/heads/main/Khanware.js\").then(t=>t.text()).then(eval);";
-                    break;
-                default:
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
-            }
+const createCreditCard = async (userId, userName) => {
+    const creditCard = document.createElement("div");
+    creditCard.className = "credit-card";
+    creditCard.setAttribute("data-aos", "zoom-in");
+    creditCard.setAttribute("data-user-id", userId);
 
-            const tempElement = document.createElement("textarea");
-            tempElement.value = scriptToClone;
-            document.body.appendChild(tempElement);
-            tempElement.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempElement);
+    const loadingDiv = document.createElement("div");
+    loadingDiv.className = "loading-spinner";
+    const spinner = document.createElement("div");
+    spinner.className = "spinner";
+    loadingDiv.appendChild(spinner);
+    creditCard.appendChild(loadingDiv);
 
-            const donationNotification = document.getElementById("donation-notification");
-            if (donationNotification.classList.contains("show")) {
-                dismissNotification();
-                setTimeout(() => {
-                    showCopyNotification(platform);
-                }, 300);
-            } else {
-                showCopyNotification(platform);
-            }
+    const nameDiv = document.createElement("div");
+    nameDiv.className = "credit-name";
+    nameDiv.textContent = userName;
+    creditCard.appendChild(nameDiv);
+
+    const avatarUrl = await fetchDiscordAvatar(userId);
+    creditCard.removeChild(loadingDiv);
+
+    const img = document.createElement("img");
+    img.className = "credit-img";
+    img.alt = userName;
+    img.src = avatarUrl || "https://cdn.discordapp.com/embed/avatars/0.png";
+    creditCard.insertBefore(img, nameDiv);
+
+    creditCard.addEventListener('click', () => openUserModal(userId, userName, img.src));
+    return creditCard;
+};
+
+const loadCreditCards = async () => {
+    const containers = [
+        { users: owners, id: "owners-container" },
+        { users: coLeaders, id: "coleaders-container" },
+        { users: managers, id: "managers-container" }
+    ];
+
+    for (const { users, id } of containers) {
+        const container = document.getElementById(id);
+        for (const user of users) {
+            const card = await createCreditCard(user.id, user.name);
+            container.appendChild(card);
         }
+    }
+};
 
-        function showCopyNotification(platform) {
-            const notification = document.getElementById("copy-notification");
-            const message = notification.querySelector(".notification-message");
-            message.textContent = `Script para ${platform} copiado com sucesso! Adicione nos favoritos do navegador para executar.`;
-            notification.style.right = "-350px";
-            notification.style.opacity = "0";
-            notification.classList.remove("hide");
-            void notification.offsetWidth;
+const formatarData = (dataString) => {
+    const data = new Date(dataString);
+    const agora = new Date();
+    const diffMilissegundos = agora - data;
+    const diffMinutos = Math.floor(diffMilissegundos / (1000 * 60));
+    const diffHoras = Math.floor(diffMinutos / 60);
+    const diffDias = Math.floor(diffHoras / 24);
 
-            setTimeout(() => {
-                notification.style.right = "20px";
-                notification.style.opacity = "1";
-                notification.classList.add("show");
-                setTimeout(() => {
-                    dismissCopyNotification();
-                }, 4000);
-            }, 100);
-        }
+    if (diffMinutos < 1) return "agora mesmo";
+    if (diffMinutos < 60) return `há ${diffMinutos} ${diffMinutos === 1 ? 'minuto' : 'minutos'}`;
+    if (diffHoras < 24) return `há ${diffHoras} ${diffHoras === 1 ? 'hora' : 'horas'}`;
+    if (diffDias < 30) return `há ${diffDias} ${diffDias === 1 ? 'dia' : 'dias'}`;
+    
+    const dia = data.getDate().toString().padStart(2, '0');
+    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+};
 
-        function dismissCopyNotification() {
-            const notification = document.getElementById("copy-notification");
-            notification.classList.add("hide");
-            notification.classList.remove("show");
-            setTimeout(() => {
-                notification.classList.remove("hide");
-                notification.style.right = "-350px";
-                notification.style.opacity = "0";
-            }, 500);
-        }
+const formatarValor = (valor) => 'R$ ' + valor.toFixed(2).replace('.', ',');
 
-        function openUserModal(userId, userName, avatarUrl) {
-            const modal = document.getElementById('user-modal');
-            const modalName = document.getElementById('modal-name');
-            const modalStory = document.getElementById('modal-story');
-            const modalAvatar = document.getElementById('modal-avatar');
+const switchTab = (tab) => {
+    currentTab = tab;
+    document.querySelectorAll('.donations-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector(`.donations-tab[data-tab="${tab}"]`).classList.add('active');
+    renderDonations();
+};
 
-            modalName.textContent = userName;
-            modalAvatar.src = avatarUrl;
+const renderDonations = () => {
+    const doacoesList = document.getElementById('donations-list');
+    
+    if (donationsData.length === 0) {
+        doacoesList.innerHTML = '<div class="donations-empty">Nenhuma doação encontrada.</div>';
+        return;
+    }
 
-            const userStory = userStories[userId] ? userStories[userId].story :
-                "Informações adicionais sobre " + userName + " em breve...";
-            modalStory.textContent = userStory;
+    doacoesList.innerHTML = '';
+    currentTab === 'recent' ? renderRecentDonations(doacoesList) : renderRankingDonations(doacoesList);
+};
 
-            modal.style.display = 'block';
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
-        }
+const renderRecentDonations = (container) => {
+    donationsData.slice(0, 5).forEach(doacao => {
+        const doacaoItem = document.createElement('div');
+        doacaoItem.className = 'donation-item';
+        doacaoItem.innerHTML = `
+            <div class="donation-header">
+                <div class="donation-name">${doacao.donatorNickname}</div>
+                <div class="donation-amount">${formatarValor(doacao.totalAmount)}</div>
+            </div>
+            <div class="donation-message">${doacao.donatorMessage}</div>
+            <div class="donation-date">${formatarData(doacao.dateCreated)}</div>
+        `;
+        container.appendChild(doacaoItem);
+    });
+};
 
-        function closeUserModal() {
-            const modal = document.getElementById('user-modal');
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        }
+const renderRankingDonations = (container) => {
+    const now = new Date();
+    const mesAtual = now.getMonth();
+    const anoAtual = now.getFullYear();
 
-        function cleanAvatarCache(maxAgeInDays = 7) {
-            const currentTime = new Date().getTime();
-            const cacheKey = 'avatar_cache_timestamp';
-            const lastCleanTime = localStorage.getItem(cacheKey);
+    const doacoesMes = donationsData
+        .filter(doacao => {
+            const data = new Date(doacao.dateCreated);
+            return data.getMonth() === mesAtual && data.getFullYear() === anoAtual;
+        })
+        .sort((a, b) => b.totalAmount - a.totalAmount)
+        .slice(0, 5);
 
-            if (lastCleanTime && (currentTime - parseInt(lastCleanTime) < maxAgeInDays * 24 * 60 * 60 * 1000)) {
-                return;
-            }
+    if (doacoesMes.length === 0) {
+        container.innerHTML = '<div class="donations-empty">Nenhuma doação este mês.</div>';
+        return;
+    }
 
-            Object.keys(localStorage).forEach(key => {
-                if (key.startsWith('discord_avatar_')) {
-                    localStorage.removeItem(key);
-                }
-            });
+    doacoesMes.forEach((doacao, index) => {
+        const doacaoItem = document.createElement('div');
+        doacaoItem.className = `donation-item rank-${index + 1}`;
+        doacaoItem.innerHTML = `
+            <div class="donation-rank">
+                <div class="rank-number">${index + 1}</div>
+                <div class="donation-name">${doacao.donatorNickname}</div>
+                <div class="donation-amount">${formatarValor(doacao.totalAmount)}</div>
+            </div>
+            <div class="donation-message">${doacao.donatorMessage}</div>
+            <div class="donation-date">${formatarData(doacao.dateCreated)}</div>
+        `;
+        container.appendChild(doacaoItem);
+    });
+};
 
-            localStorage.setItem(cacheKey, currentTime.toString());
-        }
+const carregarDoacoes = async () => {
+    const doacoesList = document.getElementById('donations-list');
+    doacoesList.innerHTML = '<div class="donation-loading"><div class="spinner"></div><span>Carregando doações...</span></div>';
 
-        async function fetchDiscordAvatar(userId) {
-            const cachedAvatar = localStorage.getItem(`discord_avatar_${userId}`);
-            if (cachedAvatar) {
-                return cachedAvatar;
-            }
+    try {
+        donationsData = await fetchWithFallback(
+            'https://dnext-api.vercel.app/api/pixgg/donations',
+            'https://dnext-apii.vercel.app/api/pixgg/donations'
+        );
+        renderDonations();
+    } catch (error) {
+        doacoesList.innerHTML = '<div class="donations-empty">Erro ao carregar doações. Tente novamente mais tarde.</div>';
+    }
+};
 
-            try {
-                const response = await fetch(
-                    `https://dnext-api.vercel.app/api/discord/user/${userId}`
-                );
-                const data = await response.json();
+const initializeSite = () => {
+    setTimeout(carregarDoacoes, 1500);
+    setInterval(carregarDoacoes, 120000);
+    setTimeout(typeTitle, 1000);
+    setTimeout(showOptimizationNotification, 1000);
+    setTimeout(showNotification, 16000);
+    
+    loadCreditCards();
+    cleanAvatarCache();
 
-                if (data && data.avatar && data.avatar.link) {
-                    const avatarUrl = `${data.avatar.link}.png?size=2048`;
-                    localStorage.setItem(`discord_avatar_${userId}`, avatarUrl);
-                    return avatarUrl;
-                } else {
-                    return null;
-                }
-            } catch (error) {
-                return null;
-            }
-        }
+    AOS.init({
+        duration: 800,
+        easing: "ease",
+        once: false,
+        mirror: false,
+    });
 
-        async function createCreditCard(userId, userName) {
-            const creditCard = document.createElement("div");
-            creditCard.className = "credit-card";
-            creditCard.setAttribute("data-aos", "zoom-in");
-            creditCard.setAttribute("data-user-id", userId);
+    document.querySelector('.close-modal')?.addEventListener('click', closeUserModal);
 
-            const loadingDiv = document.createElement("div");
-            loadingDiv.className = "loading-spinner";
-            const spinner = document.createElement("div");
-            spinner.className = "spinner";
-            loadingDiv.appendChild(spinner);
-            creditCard.appendChild(loadingDiv);
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('user-modal');
+        if (event.target === modal) closeUserModal();
+    });
 
-            const nameDiv = document.createElement("div");
-            nameDiv.className = "credit-name";
-            nameDiv.textContent = userName;
-            creditCard.appendChild(nameDiv);
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeUserModal();
+    });
 
-            const avatarUrl = await fetchDiscordAvatar(userId);
-            creditCard.removeChild(loadingDiv);
+    document.querySelectorAll('.donations-tab').forEach(tab => {
+        tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+    });
 
-            const img = document.createElement("img");
-            img.className = "credit-img";
-            img.alt = userName;
-            img.src = avatarUrl || "https://cdn.discordapp.com/embed/avatars/0.png";
-            creditCard.insertBefore(img, nameDiv);
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    applyIconColors();
+};
 
-            creditCard.addEventListener('click', function () {
-                openUserModal(userId, userName, img.src);
-            });
-
-            return creditCard;
-        }
-
-        async function loadCreditCards() {
-            const ownersContainer = document.getElementById("owners-container");
-            for (const user of owners) {
-                const card = await createCreditCard(user.id, user.name);
-                ownersContainer.appendChild(card);
-            }
-
-            const coLeadersContainer = document.getElementById("coleaders-container");
-            for (const user of coLeaders) {
-                const card = await createCreditCard(user.id, user.name);
-                coLeadersContainer.appendChild(card);
-            }
-
-            const managersContainer = document.getElementById("managers-container");
-            for (const user of managers) {
-                const card = await createCreditCard(user.id, user.name);
-                managersContainer.appendChild(card);
-            }
-        }
-
-        function formatarData(dataString) {
-            const data = new Date(dataString);
-            const agora = new Date();
-            const diffMilissegundos = agora - data;
-            const diffMinutos = Math.floor(diffMilissegundos / (1000 * 60));
-            const diffHoras = Math.floor(diffMinutos / 60);
-            const diffDias = Math.floor(diffHoras / 24);
-
-            if (diffMinutos < 1) {
-                return "agora mesmo";
-            } else if (diffMinutos < 60) {
-                return `há ${diffMinutos} ${diffMinutos === 1 ? 'minuto' : 'minutos'}`;
-            } else if (diffHoras < 24) {
-                return `há ${diffHoras} ${diffHoras === 1 ? 'hora' : 'horas'}`;
-            } else if (diffDias < 30) {
-                return `há ${diffDias} ${diffDias === 1 ? 'dia' : 'dias'}`;
-            } else {
-                const dia = data.getDate().toString().padStart(2, '0');
-                const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-                const ano = data.getFullYear();
-                return `${dia}/${mes}/${ano}`;
-            }
-        }
-
-        function formatarValor(valor) {
-            return 'R$ ' + valor.toFixed(2).replace('.', ',');
-        }
-
-        function switchTab(tab) {
-            currentTab = tab;
-            const tabs = document.querySelectorAll('.donations-tab');
-            tabs.forEach(t => t.classList.remove('active'));
-            document.querySelector(`.donations-tab[data-tab="${tab}"]`).classList.add('active');
-            renderDonations();
-        }
-
-        function renderDonations() {
-            const doacoesList = document.getElementById('donations-list');
-            if (donationsData.length === 0) {
-                doacoesList.innerHTML = '<div class="donations-empty">Nenhuma doação encontrada.</div>';
-                return;
-            }
-
-            doacoesList.innerHTML = '';
-
-            if (currentTab === 'recent') {
-                renderRecentDonations(doacoesList);
-            } else {
-                renderRankingDonations(doacoesList);
-            }
-        }
-
-        function renderRecentDonations(container) {
-            const recentes = donationsData.slice(0, 5);
-            recentes.forEach(doacao => {
-                const doacaoItem = document.createElement('div');
-                doacaoItem.className = 'donation-item';
-                doacaoItem.innerHTML = `
-                    <div class="donation-header">
-                        <div class="donation-name">${doacao.donatorNickname}</div>
-                        <div class="donation-amount">${formatarValor(doacao.totalAmount)}</div>
-                    </div>
-                    <div class="donation-message">${doacao.donatorMessage || 'Sem mensagem'}</div>
-                    <div class="donation-date">${formatarData(doacao.dateCreated)}</div>
-                `;
-                container.appendChild(doacaoItem);
-            });
-        }
-
-        function renderRankingDonations(container) {
-            const mesAtual = new Date().getMonth();
-            const anoAtual = new Date().getFullYear();
-
-            const doacoesMes = donationsData
-                .filter(doacao => {
-                    const data = new Date(doacao.dateCreated);
-                    return data.getMonth() === mesAtual &&
-                        data.getFullYear() === anoAtual;
-                })
-                .sort((a, b) => b.totalAmount - a.totalAmount)
-                .slice(0, 5);
-
-            if (doacoesMes.length === 0) {
-                container.innerHTML = '<div class="donations-empty">Nenhuma doação este mês.</div>';
-                return;
-            }
-
-            doacoesMes.forEach((doacao, index) => {
-                const doacaoItem = document.createElement('div');
-                doacaoItem.className = `donation-item rank-${index + 1}`;
-                doacaoItem.innerHTML = `
-                    <div class="donation-rank">
-                        <div class="rank-number">${index + 1}</div>
-                        <div class="donation-name">${doacao.donatorNickname}</div>
-                        <div class="donation-amount">${formatarValor(doacao.totalAmount)}</div>
-                    </div>
-                    <div class="donation-message">${doacao.donatorMessage || 'Sem mensagem'}</div>
-                    <div class="donation-date">${formatarData(doacao.dateCreated)}</div>
-                `;
-                container.appendChild(doacaoItem);
-            });
-        }
-
-        async function carregarDoacoes() {
-            const doacoesList = document.getElementById('donations-list');
-            doacoesList.innerHTML = '<div class="donation-loading"><div class="spinner"></div><span>Carregando doações...</span></div>';
-
-            try {
-                const response = await fetch('https://dnext-api.vercel.app/api/pixgg/donations');
-                donationsData = await response.json();
-                renderDonations();
-            } catch (error) {
-                doacoesList.innerHTML = '<div class="donations-empty">Erro ao carregar doações. Tente novamente mais tarde.</div>';
-            }
-        }
-
-        function initializeSite() {
-            setTimeout(carregarDoacoes, 1500);
-            setInterval(carregarDoacoes, 120000);
-            setTimeout(typeTitle, 1000);
-            setTimeout(showNotification, 1000);
-            setTimeout(showOptimizationNotification, 16000);
-            loadCreditCards();
-            cleanAvatarCache();
-
-            AOS.init({
-                duration: 800,
-                easing: "ease",
-                once: false,
-                mirror: false,
-            });
-
-            const closeBtn = document.querySelector('.close-modal');
-            closeBtn.addEventListener('click', closeUserModal);
-
-            window.addEventListener('click', function (event) {
-                const modal = document.getElementById('user-modal');
-                if (event.target === modal) {
-                    closeUserModal();
-                }
-            });
-
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape') {
-                    closeUserModal();
-                }
-            });
-
-            document.querySelectorAll('.donations-tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    switchTab(tab.dataset.tab);
-                });
-            });
-
-            document.addEventListener('contextmenu', function (e) {
-                e.preventDefault();
-            });
-
-            applyIconColors();
-        }
-
-        setTimeout(initializeSite, 100);
-    </script>
+setTimeout(initializeSite, 100);
+</script>
 </body>
-
 </html>
-
-
